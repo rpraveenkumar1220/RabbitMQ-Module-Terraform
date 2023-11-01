@@ -37,9 +37,9 @@ resource "aws_instance" "rabbitmq_server" {
   tags = {
     Name = "${var.component}-${var.env}"
   }
-  user_data = templatefile("${path.module}/userdata.sh", {
-    env = "dev"
-    component = "rabbitmq"
+  user_data = templatefile( "${path.module}/userdata.sh" , {
+    env = var.env
+    component = var.component
   })
 }
 
