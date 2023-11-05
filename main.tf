@@ -28,7 +28,7 @@ resource "aws_security_group" "SG" {
 
 ##creating EC2 instance as rabbitmq server
 resource "aws_instance" "rabbitmq_server" {
-  count = length(var.subnet_id)
+  count =  length(var.subnet_id)
   ami           = data.aws_ami.ami.id
   instance_type = var.instance_type
   subnet_id = element(var.subnet_id,count.index)
