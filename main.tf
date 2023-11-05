@@ -56,8 +56,8 @@ resource "aws_instance" "rabbitmq_server" {
 resource "aws_route53_record" "dns" {
   count =  length(var.subnet_id)
   zone_id = "Z0860624TQ63X2IAQS8P"
-  name    = "${var.component}-${var.env}"
+  name    = "${var.component}-${var.env}-${count.index}"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.rabbitmq_server[count.index].private_ip]
+  records = [aws_instance.rabbitmq_server.private_ip]
 }
