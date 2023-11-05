@@ -28,9 +28,10 @@ resource "aws_security_group" "SG" {
 
 ##creating EC2 instance as rabbitmq server
 resource "aws_instance" "rabbitmq_server" {
+  count = length(var.subnet_id)
   ami           = data.aws_ami.ami.id
   instance_type = var.instance_type
-  subnet_id = var.subnet_id
+  subnet_id = element(var.subnet_id,count.index)
   vpc_security_group_ids = [ aws_security_group.SG.id ]
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 
