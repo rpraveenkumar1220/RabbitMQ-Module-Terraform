@@ -5,3 +5,4 @@ variable "subnet_id" {}
 variable "instance_type" {}
 variable "allow_ssh_cidr" {}
 variable "sg_subnet_cidr" {}
+variable "kms_key_arn" {}
