@@ -54,6 +54,7 @@ resource "aws_instance" "rabbitmq_server" {
 
 #### Creating DNS records
 resource "aws_route53_record" "dns" {
+  count =  length(var.subnet_id)
   zone_id = "Z0860624TQ63X2IAQS8P"
   name    = "${var.component}-${var.env}"
   type    = "A"
