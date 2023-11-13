@@ -39,10 +39,10 @@ resource "aws_instance" "rabbitmq_server" {
     Name = "${var.component}-${var.env}"
       }
 
-  root_block_device {
+  /*root_block_device {
     encrypted  = true
     kms_key_id = var.kms_key_arn
-  }
+  }*/
 
   user_data = templatefile("${path.module}/userdata.sh", {
     env       = var.env
