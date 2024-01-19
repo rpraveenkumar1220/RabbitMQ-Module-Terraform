@@ -31,7 +31,8 @@ resource "aws_instance" "rabbitmq_server" {
   #count =  length(var.subnet_id)
   ami           = data.aws_ami.ami.id
   instance_type = var.instance_type
-  subnet_id = element(var.subnet_id,count.index)
+  #subnet_id = element(var.subnet_id,count.index)
+  subnet_id = var.subnet_id
   vpc_security_group_ids = [ aws_security_group.SG.id ]
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 
