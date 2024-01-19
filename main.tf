@@ -61,5 +61,6 @@ resource "aws_route53_record" "dns" {
   name    = "${var.component}-${var.env}"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.rabbitmq_server[count.index].private_ip]
+  #records = [aws_instance.rabbitmq_server[count.index].private_ip]
+  records = [aws_instance.rabbitmq_server.private_ip]
 }
