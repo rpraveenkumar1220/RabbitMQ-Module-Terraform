@@ -28,7 +28,7 @@ resource "aws_security_group" "SG" {
 
 ##creating EC2 instance as rabbitmq server
 resource "aws_instance" "rabbitmq_server" {
-  count =  length(var.subnet_id)
+  #count =  length(var.subnet_id)
   ami           = data.aws_ami.ami.id
   instance_type = var.instance_type
   subnet_id = element(var.subnet_id,count.index)
@@ -54,9 +54,10 @@ resource "aws_instance" "rabbitmq_server" {
 
 #### Creating DNS records
 resource "aws_route53_record" "dns" {
-  count =  length(var.subnet_id)
+  #count =  length(var.subnet_id)
   zone_id = "Z0860624TQ63X2IAQS8P"
-  name    = "${var.component}-${var.env}-${count.index}"
+  #name    = "${var.component}-${var.env}-${count.index}"
+  name    = "${var.component}-${var.env}"
   type    = "A"
   ttl     = 30
   records = [aws_instance.rabbitmq_server[count.index].private_ip]
